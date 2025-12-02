@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend 
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend  
+    spec:
+      containers:
+      - name: backend
+        image: jaicswamy962/my-backend:v1
+        ports:
+        - containerPort: 5000
+        env:
+          - name: DB_HOST
+            value: "database-service"
+
+          - name: DB_NAME
+            value: "appdb"
+
+          - name: DB_PORT
+            value: "3306"
+
+          - name: DB_USER
+            value: "appuser"
+
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: MYSQL_ROOT_PASSWORD

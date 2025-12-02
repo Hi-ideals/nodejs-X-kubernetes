@@ -1,0 +1,109 @@
+/* Reset and base style */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+  margin: 0;
+  padding: 40px;
+  color: #333;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  color: #1976d2;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #424242;
+  margin-top: 40px;
+}
+
+/* Items list */
+ul {
+  list-style-type: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+li {
+  background-color: #ffffff;
+  margin: 8px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+li:hover {
+  transform: scale(1.03);
+}
+
+/* Input and button */
+#itemName {
+  width: 60%;
+  padding: 10px;
+  border: 2px solid #1976d2;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+#itemName:focus {
+  border-color: #0d47a1;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.4);
+}
+
+#addBtn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+
+  /* 👇 Add these for center alignment */
+  display: block;
+  margin: 15px auto; /* centers horizontally */
+}
+
+#addBtn:hover {
+  background-color: #0d47a1;
+}
+
+/* Layout */
+input,
+button {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+h2 + input,
+h2 + button {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  #itemName {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #addBtn {
+    width: 100%;
+  }
+}

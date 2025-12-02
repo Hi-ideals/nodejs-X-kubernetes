@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Node.js Sample Frontend</title>
+</head>
+<body>
+  <h1>Items List</h1>
+  <ul id="items"></ul>
+
+  <h2>Add Item</h2>
+  <input type="text" id="itemName" placeholder="Item name">
+  <button id="addBtn">Add</button>
+
+  <script>
+    const API_URL = 'http://backend-service:5000/api/items';
+
+    // Fetch items
+    async function fetchItems() {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      const list = document.getElementById('items');
+      list.innerHTML = '';
+      data.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.name;
+        list.appendChild(li);
+      });
+    }
+
+    // Add item
+    document.getElementById('addBtn').addEventListener('click', async () => {
+      const name = document.getElementById('itemName').value;
+      if (!name) return alert('Enter a name');
+      await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+      document.getElementById('itemName').value = '';
+      fetchItems();
+    });
+
+    // Load on start
+    fetchItems();
+  </script>
+</body>
+</html>
