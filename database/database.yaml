@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: database-deployment
+  name: mysql
   labels:
-    app: database
+    app: mysql
 spec:
   replicas: 1   
   selector:
     matchLabels:
-      app: database
+      app: mysql
   template:
     metadata:
       labels:
-        app: database
+        app: mysql
     spec:
       containers:
-      - name: database
+      - name: mysql
         image: mysql:5.7
         env:
           - name: MYSQL_ROOT_PASSWORD
@@ -35,6 +35,7 @@ spec:
                 
         ports:
         - containerPort: 3306
+          
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
@@ -43,3 +44,4 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+
