@@ -1,18 +1,19 @@
+    // stages {
+    //     stage('Clone Repository') {
+    //         steps {
+    //             git 'https://github.com/your-org/k8s-ci-cd-project.git'
+    //         }
+    //     }
 pipeline {
     agent any
 
     environment {
         REGISTRY = "docker.io/yourdockerhub"
         FRONTEND_IMAGE = "${REGISTRY}/frontend:v1"
-        BACKEND_IMAGE = "${REGISTRY}/backend:v1"
+        BACKEND_IMAGE  = "${REGISTRY}/backend:v1"
     }
 
     stages {
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/your-org/k8s-ci-cd-project.git'
-            }
-        }
 
         stage('Build Docker Images') {
             steps {
@@ -34,6 +35,7 @@ pipeline {
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                     docker push $FRONTEND_IMAGE
                     docker push $BACKEND_IMAGE
+                    docker logout
                     '''
                 }
             }
