@@ -1,25 +1,36 @@
-    // stages {
-    //     stage('Clone Repository') {
-    //         steps {
-    //             git 'https://github.com/your-org/k8s-ci-cd-project.git'
-    //         }
-    //     }
+   
+        
 pipeline {
     agent any
 
     environment {
-        REGISTRY = "docker.io/yourdockerhub"
+        REGISTRY = "docker.io/jaicswamy962"
         FRONTEND_IMAGE = "${REGISTRY}/frontend:v1"
         BACKEND_IMAGE  = "${REGISTRY}/backend:v1"
     }
 
     stages {
+        
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/Hi-ideals/nodejs-X-kubernetes.git'
+            }
+        }
 
         stage('Build Docker Images') {
             steps {
                 sh '''
                 docker build -t $FRONTEND_IMAGE frontend/
                 docker build -t $BACKEND_IMAGE backend/
+                '''
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                sh '''
+                docker build -t $FRONTEND_IMAGE ./frontend
+                docker build -t $BACKEND_IMAGE ./backend
                 '''
             }
         }

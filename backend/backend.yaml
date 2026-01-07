@@ -33,7 +33,4 @@ spec:
             value: "appuser"
 
           - name: DB_PASS
-            valueFrom:
-              secretKeyRef:
-                name: mysql-secret
-                key: MYSQL_PASSWORD
+            value: "StrongPassword123"

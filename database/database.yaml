@@ -19,10 +19,7 @@ spec:
         image: mysql:5.7
         env:
           - name: MYSQL_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql-secret
-                key: MYSQL_ROOT_PASSWORD
+            value: "StrongPassword123"
 
           - name: MYSQL_DATABASE
             value: "appdb"
@@ -31,17 +28,10 @@ spec:
             value: "appuser"
 
           - name: MYSQL_PASSWORD
-            value: "StrongPassword123!"
+            value: "StrongPassword123"
                 
         ports:
         - containerPort: 3306
           
-        volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
-
-      volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
+       
 
