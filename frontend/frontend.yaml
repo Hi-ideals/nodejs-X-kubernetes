@@ -18,7 +18,7 @@ spec:
       - name: frontend
         image: jaicswamy962/my-frontend:v1
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 
   
 
