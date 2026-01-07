@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: jaicswamy962/my-backend:v1
+        image: jaicswamy962/backend:v1
         ports:
         - containerPort: 5000
         env:
