@@ -12,6 +12,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git 'https://github.com/Hi-ideals/nodejs-X-kubernetes.git'
+                sh 'cd nodejs-X-kubernetes'
             }
         }
 
