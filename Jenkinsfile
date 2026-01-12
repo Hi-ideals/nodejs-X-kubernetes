@@ -25,15 +25,6 @@ pipeline {
             }
         }
 
-        stage('Build Docker Images') {
-            steps {
-                sh '''
-                docker build -t $FRONTEND_IMAGE ./frontend
-                docker build -t $BACKEND_IMAGE ./backend
-                '''
-            }
-        }
-
         stage('Push Docker Images') {
             steps {
                 withCredentials([usernamePassword(
@@ -59,13 +50,15 @@ pipeline {
 
         stage('Deploy Backend') {
             steps {
-                sh 'kubectl apply -f backend/'
+                sh 'kubectl apply -f backend/backend.yaml'
+                sh 'kubectl apply -f backend/service.yaml'
             }
         }
 
         stage('Deploy Frontend') {
             steps {
-                sh 'kubectl apply -f frontend/'
+                sh 'kubectl apply -f frontend/frontend.yaml'
+                sh 'kubectl apply -f frontend/service.yaml'
             }
         }
 
